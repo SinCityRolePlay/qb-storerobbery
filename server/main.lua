@@ -1,7 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local SafeCodes = {}
-local cashA = 250 				--<<how much minimum you can get from a robbery
-local cashB = 450				--<< how much maximum you can get from a robbery
+local cashA = 350 				--<<how much minimum you can get from a robbery
+local cashB = 750				--<< how much maximum you can get from a robbery
 
 CreateThread(function()
     while true do
@@ -86,12 +86,12 @@ RegisterNetEvent('qb-storerobbery:server:SafeReward', function()
     local luck = math.random(1, 100)
     local odd = math.random(1, 100)
     if luck <= 10 then
-        Player.Functions.AddItem("rolex", math.random(3, 7))
-        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["rolex"], "add")
+        Player.Functions.AddItem("usb_pink", math.random(3, 7))
+        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["hack_usb"], "add")
         if luck == odd then
             Wait(500)
-            Player.Functions.AddItem("goldbar", 1)
-            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["goldbar"], "add")
+            Player.Functions.AddItem("weapon_smg", 1)
+            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["weapon_smg"], "add")
         end
     end
 end)
