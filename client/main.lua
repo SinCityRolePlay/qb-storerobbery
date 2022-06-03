@@ -439,9 +439,27 @@ end)
 RegisterNetEvent('qb-storerobbery:client:robberyCall', function(_, _, _, coords)
     if PlayerJob.name == "police" and onDuty then
         PlaySound(-1, "Lose_1st", "GTAO_FM_Events_Soundset", 0, 0, 1)
-        TriggerServerEvent('police:server:policeAlert', 'Storerobbery in progress')
+        --TriggerServerEvent('police:server:policeAlert', 'Storerobbery in progress')
+        local data = exports['cd_dispatch']:GetPlayerInfo()
+        TriggerServerEvent('cd_dispatch:AddNotification', {
+            job_table = {'police'}, 
+            coords = data.coords,
+            title = '10-35 - Storerobbery in progress',
+            message = 'Storerobbery in progress at'..data.street..' suspect is a '..data.sex..'.', 
+            flash = 1,
+            unique_id = tostring(math.random(0000000,9999999)),
+            blip = {
+                sprite = 58, 
+                scale = 1.2, 
+                colour = 59,
+                flashes = true, 
+                text = '10-35 - Storerobbery in progress',
+                time = (5*60*1000),
+                sound = 1,
+            }
+        })
 
-        local transG = 250
+        --[[local transG = 250
         local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
         SetBlipSprite(blip, 458)
         SetBlipColour(blip, 1)
@@ -460,6 +478,6 @@ RegisterNetEvent('qb-storerobbery:client:robberyCall', function(_, _, _, coords)
                 RemoveBlip(blip)
                 return
             end
-        end
+        end]]
     end
 end)
